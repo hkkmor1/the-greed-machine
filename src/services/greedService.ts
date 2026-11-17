@@ -27,9 +27,10 @@ class GreedService {
     return response.data;
   }
 
-  async createSession(): Promise<{ session_id: string }> {
-    // Передаем пустой объект {}, чтобы сервер не ругался на отсутствие тела
-    const response = await baseApi.post('/api/greed/session/new', {});
+    async createSession(characterId: string): Promise<{ session_id: string }> {
+    const response = await baseApi.post('/api/greed/session/new', {}, {
+      params: { character_id: characterId }
+    });
     return response.data;
   }
 
